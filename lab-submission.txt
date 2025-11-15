@@ -1,0 +1,2 @@
+I learned how to containerize applications, manage images, create multi-container apps,
+use volumes, push to Docker Hub, and use Docker Compose for production-like environments.

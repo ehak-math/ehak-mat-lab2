@@ -1,0 +1,25 @@
+services:
+  app:
+    image: node:lts-alpine # Use the official Node.js LTS image based on Alpine Linux
+    command: sh -c "yarn install && yarn run dev" # Install dependencies and start the development server
+    ports:
+      - 127.0.0.1:3000:3000 # Bind to localhost only
+    working_dir: /app # Set the working directory inside the container
+    volumes:
+      - ./:/app # Mount the current directory to /app in the container
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: todos
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: todos
+
+volumes:
+  todo-mysql-data:
